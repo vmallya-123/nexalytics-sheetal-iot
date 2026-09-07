@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +17,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     :root {
       --navy: #0f1b3d;
       --navy-mid: #162350;
@@ -136,6 +134,16 @@
 
     .nav-links a:hover::after {
       width: 100%;
+    }
+
+    /* Active navigation indicator */
+    .nav-links a.active {
+      color: var(--white);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+      background: var(--teal);
     }
 
     .nav-cta {
@@ -602,85 +610,17 @@
     }
 
     .why-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
+      display: flex;
+      justify-content: center;
       margin-top: 48px;
     }
 
-    .why-card {
-      padding: 36px 28px;
-      border-radius: 16px;
-      text-align: center;
-      background: var(--off-white);
-      border: 1px solid transparent;
-      transition: all 0.4s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .why-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--amber), var(--teal));
-      transform: scaleX(0);
-      transition: transform 0.4s;
-    }
-
-    .why-card:hover {
-      border-color: var(--gray-100);
-      background: var(--white);
-      box-shadow: 0 12px 40px rgba(15, 27, 61, 0.08);
-      transform: translateY(-4px);
-    }
-
-    .why-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .why-icon {
-      width: 76px;
-      height: 76px;
-      border-radius: 16px;
-      margin: 0 auto 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-    }
-
-    .why-icon.icon-1 {
-      background: linear-gradient(135deg, rgba(232, 148, 46, 0.12), rgba(232, 148, 46, 0.05));
-    }
-
-    .why-icon.icon-2 {
-      background: linear-gradient(135deg, rgba(26, 154, 170, 0.12), rgba(26, 154, 170, 0.05));
-    }
-
-    .why-icon.icon-3 {
-      background: linear-gradient(135deg, rgba(46, 204, 113, 0.12), rgba(46, 204, 113, 0.05));
-    }
-
-    .why-icon.icon-4 {
-      background: linear-gradient(135deg, rgba(232, 148, 46, 0.12), rgba(26, 154, 170, 0.05));
-    }
-
-    .why-card h3 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 10px;
-    }
-
-    .why-card p {
-      font-size: 0.88rem;
-      line-height: 1.65;
-      color: var(--gray-600);
+    .why-grid img {
+      display: block;
+      width: min(100%, 900px);
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(20, 45, 90, 0.08);
     }
 
     /* ===== SOLUTIONS ===== */
@@ -743,6 +683,24 @@
       justify-content: center;
       background: var(--amber-glow);
       font-size: 1.4rem;
+    }
+
+    .solution-card-logo {
+      width: 100%;
+      height: 165px;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background: var(--navy);
+    }
+
+    .solution-card-logo.iot-card-logo,
+    .solution-card-logo.digital-card-logo {
+      object-fit: contain;
+      background: var(--navy);
     }
 
     .sol-card h3 {
@@ -885,6 +843,15 @@
       box-shadow: 0 8px 30px rgba(15, 27, 61, 0.08);
     }
 
+    .sol-modal-body .video-square {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 14px;
+      margin: 20px 0;
+      box-shadow: 0 8px 30px rgba(15, 27, 61, 0.08);
+    }
+
     .sol-modal-body .sol-modal-tags {
       display: flex;
       flex-wrap: wrap;
@@ -938,6 +905,219 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
+    /* ===== NEWS SECTION ===== */
+    .news-section {
+      background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%);
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .news-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--gray-100);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .news-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(15, 27, 61, 0.12);
+      border-color: var(--amber);
+    }
+
+    .news-card-image {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      overflow: hidden;
+    }
+
+    .news-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .news-card-image img.projects-news-image {
+      object-fit: contain;
+    }
+
+    .news-card-image.projects-news-image-box {
+      background: #fff;
+    }
+
+    .news-card-image.upcoming-technology-image-box {
+      background: #fff;
+    }
+
+    .news-card-image img.upcoming-technology-image {
+      object-fit: cover;
+    }
+
+    .news-card-content {
+      padding: 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .news-card p {
+      font-size: 0.9rem;
+      color: var(--gray-400);
+      flex: 1;
+      line-height: 1.6;
+    }
+
+    .news-card-link {
+      color: var(--amber);
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .news-card-link:hover {
+      color: var(--amber-light);
+      gap: 12px;
+    }
+
+    /* ===== PRODUCTS SECTION ===== */
+    .products-section {
+      background: var(--white);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .product-card {
+      background: var(--off-white);
+      border-radius: 16px;
+      padding: 40px 28px;
+      text-align: center;
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      background: var(--white);
+      border-color: var(--amber);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(232, 148, 46, 0.15);
+    }
+
+    .product-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      display: inline-flex;
+      width: 80px;
+      height: 80px;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(232, 148, 46, 0.1), rgba(26, 154, 170, 0.1));
+      border-radius: 16px;
+    }
+
+    .deepvision-product-image {
+      width: 100%;
+      height: 180px;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: #07111f;
+      display: block;
+    }
+
+    .product-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .product-card p {
+      font-size: 0.95rem;
+      color: var(--gray-400);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .product-features {
+      text-align: left;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .product-features li {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      margin-bottom: 8px;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .product-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: bold;
+    }
+
+    .product-cta {
+      background: var(--amber);
+      color: var(--navy);
+      border: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: auto;
+    }
+
+    .product-cta:hover {
+      background: var(--amber-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232, 148, 46, 0.3);
+    }
+
     /* ===== IOT FOR MANUFACTURING ===== */
     .iot-section {
       background: var(--off-white);
@@ -982,51 +1162,18 @@
     }
 
     .edgehub-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      display: flex;
+      justify-content: center;
+      position: relative;
       margin-bottom: 60px;
     }
 
-    .eh-card {
-      padding: 28px 24px;
-      background: var(--white);
-      border-radius: 14px;
-      border: 1px solid var(--gray-100);
-      transition: all 0.3s;
-    }
-
-    .eh-card:hover {
-      border-color: var(--amber);
-      box-shadow: 0 8px 24px var(--amber-glow);
-      transform: translateY(-3px);
-    }
-
-    .eh-card .eh-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--navy), var(--navy-light));
-      color: var(--amber);
-      font-size: 1.2rem;
-    }
-
-    .eh-card h4 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-
-    .eh-card p {
-      font-size: 0.82rem;
-      line-height: 1.6;
-      color: var(--gray-600);
+    .edgehub-grid img {
+      display: block;
+      width: min(100%, 1200px);
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(20, 45, 90, 0.08);
     }
 
     .usecases-title {
@@ -1383,51 +1530,17 @@
     }
 
     .app-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      display: flex;
+      justify-content: center;
       margin-top: 48px;
     }
 
-    .app-card {
-      padding: 28px 20px;
-      text-align: center;
-      border-radius: 14px;
-      background: var(--off-white);
-      border: 1px solid transparent;
-      transition: all 0.3s;
-    }
-
-    .app-card:hover {
-      background: var(--white);
-      border-color: var(--gray-100);
-      box-shadow: 0 8px 30px rgba(15, 27, 61, 0.06);
-      transform: translateY(-3px);
-    }
-
-    .app-icon-wrap {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
-      font-size: 1.4rem;
-    }
-
-    .app-card h4 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--navy);
-    }
-
-    .app-card p {
-      font-size: 0.78rem;
-      color: var(--gray-400);
-      margin-top: 6px;
+    .app-grid img {
+      display: block;
+      width: min(100%, 1280px);
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(20, 45, 90, 0.08);
     }
 
     /* ===== MANAGEMENT TEAM ===== */
@@ -1481,6 +1594,12 @@
       display: block;
     }
 
+    .team-profile-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
     .team-card h4 {
       font-family: 'Outfit', sans-serif;
       font-size: 1.15rem;
@@ -1508,6 +1627,35 @@
       color: var(--gray-400);
       margin-top: 12px;
       font-style: italic;
+    }
+
+    .team-card {
+      text-align: left;
+      padding: 40px 32px 36px;
+      border-radius: 16px;
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      transition: all 0.4s;
+    }
+
+    .team-linkedin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 18px;
+      font-size: 1.7rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.08em;
+      color: var(--linkedin-blue, #0a66c2);
+      text-decoration: none;
+      align-self: flex-start;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .team-linkedin:hover {
+      transform: translateY(-1px);
+      color: #004182;
     }
 
     /* ===== PARTNERS ===== */
@@ -2071,13 +2219,14 @@
         <span style="font-size: 1rem; font-weight: 600; color: var(--white);">NEXALYTICS DTX</span>
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#solutions">Solutions</a></li>
-        <li><a href="#tech-hub">Technology Hub</a></li>
-        <li><a href="#industries">Industries</a></li>
-        <li><a href="#why">Why Us</a></li>
-        <li><a href="#team">Management Team</a></li>
-        <!-- <li><a href="#partners">Partners</a></li> -->
         <li><a href="#about">About</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#tech-hub">Tech Hub</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#team">Management</a></li>
       </ul>
       <a href="#contact" class="nav-cta">Contact Us</a>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -2170,6 +2319,43 @@
     </div>
   </section>
 
+  <!-- ===== NEWS SECTION ===== -->
+  <section class="news-section section-pad" id="news">
+    <div class="container">
+      <div style="text-align:center; max-width:700px; margin:0 auto 48px;">
+        <p class="section-label">Latest Updates</p>
+        <h2 class="section-title">News &amp; Insights</h2>
+        <p class="section-desc">Stay informed with the latest developments, industry insights, and company updates from Nexalytics DTX.</p>
+      </div>
+      <div class="news-grid">
+        <div class="news-card fade-up" onclick="window.location.href='https://www.linkedin.com/company/nexalytics-dtx-pte-ltd/'">
+        <div class="news-card-image"><img src="images/linkedin.png" alt="Nexalytics DTX on LinkedIn"></div>
+          <div class="news-card-content">
+            <h3>LinkedIn</h3>
+            <p></p>
+            <a href="https://www.linkedin.com/company/nexalytics-dtx-pte-ltd/" class="news-card-link">Visit LinkedIn →</a>
+          </div>
+        </div>
+
+        <div class="news-card fade-up">
+          <div class="news-card-image projects-news-image-box"><img class="projects-news-image" src="images/projects.jpg" alt="Nexalytics DTX projects"></div>
+          <div class="news-card-content">
+            <h3>OurProjects</h3>
+            <p></p>
+          </div>
+        </div>
+
+        <div class="news-card fade-up">
+          <div class="news-card-image upcoming-technology-image-box"><img class="upcoming-technology-image" src="images/Upcoming Technology.png" alt="Upcoming Technology"></div>
+          <div class="news-card-content">
+            <h3>Upcoming Technology</h3>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== WHY NEXALYTICS ===== -->
   <section class="why-section section-pad" id="why">
     <div class="container">
@@ -2191,30 +2377,8 @@
         <img src="images/Why-us.png" alt="Why Nexalytics DTX" style="width:100%; display:block;">
       </div>
       <div class="why-grid">
-        <div class="why-card fade-up">
-          <div class="why-icon icon-1">&#x1F4AC;</div>
-          <h3>Industry-Specific Expertise</h3>
-          <p>Deep domain knowledge across manufacturing, healthcare, finance, telecom, and more&mdash;tailored solutions
-            that fit your industry.</p>
-        </div>
-        <div class="why-card fade-up">
-          <div class="why-icon icon-2">&#x1F4CA;</div>
-          <h3>Proven Case Studies</h3>
-          <p>Demonstrated results with real-world deployments&mdash;from reducing unauthorized access by 45% to cutting
-            fuel costs by 20%.</p>
-        </div>
-        <div class="why-card fade-up">
-          <div class="why-icon icon-3">&#x1F512;</div>
-          <h3>Scalable &amp; Secure Solutions</h3>
-          <p>Enterprise-grade security from edge to cloud, with architectures built to scale as your operations grow.
-          </p>
-        </div>
-        <div class="why-card fade-up">
-          <div class="why-icon icon-4">&#x1F4A1;</div>
-          <h3>Commitment to Innovation</h3>
-          <p>Continuously pushing boundaries with cutting-edge technologies while maintaining practical, business-first
-            thinking.</p>
-        </div>
+        <img class="fade-up" src="images/A.png"
+          alt="Why Nexalytics DTX: industry-specific expertise, proven case studies, scalable and secure solutions, and commitment to innovation">
       </div>
     </div>
   </section>
@@ -2231,37 +2395,37 @@
       </div>
       <div class="solutions-grid">
         <div class="sol-card fade-up" onclick="openSolModal('modal-iot')">
-          <div class="sol-icon">&#x1F310;</div>
+          <img class="solution-card-logo iot-card-logo" src="images/solutions/IOT.png" alt="IoT connected world">
           <h3>IoT Customisation Solutions</h3>
           <p>End-to-end IoT architecture from perception layer sensors through network gateways to cloud
             applications&mdash;enabling real-time monitoring, control, and predictive maintenance.</p>
         </div>
         <div class="sol-card fade-up" onclick="openSolModal('modal-ai-safety')">
-          <div class="sol-icon">&#x1F441;</div>
+          <img class="solution-card-logo" src="images/solutions/AI.png" alt="AI technology and cybersecurity">
           <h3>AI Based Smart Safety Solution</h3>
           <p>Turn your existing CCTV into a smart safety system. Detect PPE compliance, proximity hazards, and zone
             violations in real-time across manufacturing environments.</p>
         </div>
         <div class="sol-card fade-up" onclick="openSolModal('modal-digital')">
-          <div class="sol-icon">&#x2699;</div>
+          <img class="solution-card-logo digital-card-logo" src="images/solutions/Digital%20Transformation.png" alt="Digital transformation technology">
           <h3>Digital Transformation &amp; Analytics</h3>
           <p>Modernize operations with data-driven insights, process automation, and digital-first strategies for
             measurable ROI.</p>
         </div>
         <div class="sol-card fade-up" onclick="openSolModal('modal-domain-ai')">
-          <div class="sol-icon">&#x1F4E1;</div>
+          <img class="solution-card-logo" src="images/solutions/Domain-Specific%20AI%20%26%20IoT.png" alt="Domain-Specific AI and IoT">
           <h3>Domain-Specific AI &amp; IoT</h3>
           <p>Purpose-built AI and IoT architectures tailored to manufacturing, logistics, and facility management needs.
           </p>
         </div>
         <div class="sol-card fade-up" onclick="openSolModal('modal-cyber')">
-          <div class="sol-icon">&#x1F3AF;</div>
+          <img class="solution-card-logo" src="images/solutions/Cybersecurity%20Solutions.png" alt="Cybersecurity Solutions">
           <h3>Cybersecurity Solutions</h3>
           <p>Fine-tuned to address end cybersecurity challenges with practical, measurable outcomes and strong return on
             investment.</p>
         </div>
         <div class="sol-card fade-up" onclick="openSolModal('modal-accelerators')">
-          <div class="sol-icon">&#x1F3ED;</div>
+          <img class="solution-card-logo" src="images/solutions/Industry-Specific%20Accelerators.png" alt="Industry-Specific Accelerators">
           <h3>Industry-Specific Accelerators</h3>
           <p>Industrial Robotics, AI-Cyber, Solar/Green Energy Monitoring, Freezer Monitoring, and Solutions to Contact
             Centers.</p>
@@ -2484,6 +2648,88 @@
     </div>
   </div>
 
+  <!-- ===== PRODUCTS SECTION ===== -->
+  <section class="products-section section-pad" id="products">
+    <div class="container">
+      <div style="text-align:center; max-width:700px; margin:0 auto 48px;">
+        <p class="section-label">Our Product Suite</p>
+        <h2 class="section-title">Comprehensive Solutions for Modern Industry</h2>
+        <p class="section-desc">Powerful, scalable products designed to address your most critical business challenges.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card fade-up" onclick="openSolModal('product-edge')">
+          <img class="deepvision-product-image" src="images/products/deepvision.jpeg" alt="Deep Vision CCTV safety monitoring">
+          <h3>Deep Vision</h3>
+          <p>DeepVision is an AI-powered safety system that transforms existing CCTV cameras into smart safety monitoring. It provides real-time detection of people, vehicles, PPE kit, unauthorized access, smoke & fire, productivity monitoring, edge processing, custom alert zones, and easy deployment.</p>
+          <ul class="product-features">
+            <li>Works with Existing CCTV</li>
+            <li>Real-Time Object Detection</li>
+            <li>Smart Alerts</li>
+            <li>No-Code Setup</li>
+          </ul>
+          <button class="product-cta" onclick="event.stopPropagation(); openSolModal('product-edge')">Learn More</button>
+        </div>
+
+        <div class="product-card fade-up" onclick="openSolModal('product-vision')">
+          <img class="deepvision-product-image" src="images/products/smartvision.png" alt="Smart Vision industrial vehicle safety monitoring">
+          <h3>Smart Vision</h3>
+          <p>SysGuard SmartVision is an AI-powered Smart detection system for forklifts and industrial vehicles, providing real-time alerts and visual awareness to help and prevent the accidents in the industrial environments.</p>
+          <ul class="product-features">
+            <li>Real-Time Pedestrian Detection</li>
+            <li>Improves Workplace Safety</li>
+            <li>Zone Monitoring</li>
+            <li>Danger-Zone Awareness</li>
+          </ul>
+          <button class="product-cta" onclick="event.stopPropagation(); openSolModal('product-vision')">Learn More</button>
+        </div>
+
+        <div class="product-card fade-up">
+          <img class="deepvision-product-image" src="images/products/RFMS.png" alt="Remote Freezer Monitoring System">
+          <h3>Remote Freezer Monitoring System</h3>
+          <p>RFMS continuously monitors freezer temperature, ambient conditions, compressor performance, door activity, energy usage, and leaks using connected sensors, wireless nodes, gateways, and cloud-based analytics for real-time alerts and predictive maintenance.</p>
+          <ul class="product-features">
+            <li>Leak Detection</li>
+            <li>Real-time Analytics</li>
+            <li>Inventory Protection</li>
+            <li>Energy Optimization</li>
+          </ul>
+          <button class="product-cta" type="button">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sol-modal-overlay" id="product-edge">
+    <div class="sol-modal">
+      <button class="sol-modal-close" onclick="closeSolModal('product-edge')">&times;</button>
+      <div class="sol-modal-body">
+        <h2>DeepVision Features</h2>
+        <img src="images/products/deepvision1.png" alt="Deep Vision AI safety monitoring">
+        <h2>Videos</h2>
+        <video controls width="100%" aria-label="Deep Vision product features video">
+          <source src="images/products/video%201.mp4" type="video/mp4">
+          Your browser does not support the video element.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <div class="sol-modal-overlay" id="product-vision">
+    <div class="sol-modal">
+      <button class="sol-modal-close" onclick="closeSolModal('product-vision')">&times;</button>
+      <div class="sol-modal-body">
+        <h2>Smart Vision Features</h2>
+        <img src="images/products/smarrtvision1.png" alt="Smart Vision industrial vehicle safety monitoring">
+        <img src="images/products/smartvision2.png" alt="Smart Vision industrial vehicle safety monitoring">
+        <h2>Videos</h2>
+        <video class="video-square" controls aria-label="Smart Vision product features video">
+          <source src="images/products/video2.mp4" type="video/mp4">
+          Your browser does not support the video element.
+        </video>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== IOT FOR MANUFACTURING ===== -->
   <section class="iot-section section-pad" id="iot">
     <div class="container">
@@ -2503,41 +2749,8 @@
       <p class="edgehub-sub fade-up">Streamlined provisioning, remote monitoring, OTA updates, and secure integrations
       </p>
       <div class="edgehub-grid">
-        <div class="eh-card fade-up">
-          <div class="eh-icon">&#x1F527;</div>
-          <h4>Streamlined Device Provisioning</h4>
-          <p>Integrates with edge tools like EdgeLink Studio and I/O module utilities to simplify connecting new
-            devices.</p>
-        </div>
-        <div class="eh-card fade-up">
-          <div class="eh-icon">&#x1F4F1;</div>
-          <h4>Remote Monitoring &amp; Control</h4>
-          <p>Real-time monitoring of device status and control capabilities, enabling efficient management from
-            anywhere.</p>
-        </div>
-        <div class="eh-card fade-up">
-          <div class="eh-icon">&#x1F4E4;</div>
-          <h4>Over-the-Air (OTA) Updates</h4>
-          <p>Seamless deployment of firmware and software updates to devices remotely, reducing on-site maintenance
-            cost.</p>
-        </div>
-        <div class="eh-card fade-up">
-          <div class="eh-icon">&#x1F6E1;</div>
-          <h4>Edge-to-Cloud Security</h4>
-          <p>Robust security measures across edge devices to the cloud, ensuring integrity and operational
-            confidentiality.</p>
-        </div>
-        <div class="eh-card fade-up">
-          <div class="eh-icon">&#x1F465;</div>
-          <h4>Role-Based Access Control</h4>
-          <p>Precise control over user permissions to devices and cloud services, enhancing security and management.</p>
-        </div>
-        <div class="eh-card fade-up">
-          <div class="eh-icon">&#x1F517;</div>
-          <h4>3rd Party Integration</h4>
-          <p>APIs for data plugin and forwarding, enabling interoperability and extensibility of existing
-            infrastructure.</p>
-        </div>
+        <img class="fade-up" src="images/Comprehensive Device Management from Edge to Cloud/1.png"
+          alt="Comprehensive device management from edge to cloud features">
       </div>
 
       <h3 class="usecases-title fade-up">Real-World Use Cases</h3>
@@ -2873,46 +3086,8 @@
         </p>
       </div>
       <div class="app-grid">
-        <div class="app-card fade-up">
-          <div class="app-icon-wrap">&#x1F4A0;</div>
-          <h4>Wafer Fabs</h4>
-          <p>Semiconductor manufacturing</p>
-        </div>
-        <div class="app-card fade-up">
-          <div class="app-icon-wrap">&#x1F3E5;</div>
-          <h4>Healthcare</h4>
-          <p>Diagnostics &amp; patient care</p>
-        </div>
-        <div class="app-card fade-up">
-          <div class="app-icon-wrap">&#x1F50C;</div>
-          <h4>Electronics Manufacturing</h4>
-          <p>Assembly &amp; quality control</p>
-        </div>
-        <div class="app-card fade-up">
-          <div class="app-icon-wrap">&#x2600;</div>
-          <h4>Solar &amp; Energy</h4>
-          <p>Monitoring &amp; edge intelligence</p>
-        </div>
-        <div class="app-card fade-up">
-          <div class="app-icon-wrap">&#x1F69A;</div>
-          <h4>Logistics</h4>
-          <p>Fleet &amp; supply chain</p>
-        </div>
-        <div class="app-card fade-up">
-          <div class="app-icon-wrap">&#x1F4DE;</div>
-          <h4>Telecom</h4>
-          <p>Voice analytics &amp; optimization</p>
-        </div>
-        <div class="app-card fade-up">
-          <div class="app-icon-wrap">&#x1F3E2;</div>
-          <h4>Facility Monitoring</h4>
-          <p>Building &amp; campus management</p>
-        </div>
-        <div class="app-card fade-up">
-          <div class="app-icon-wrap">&#x1F30F;</div>
-          <h4>Global Outlook</h4>
-          <p>Singapore-based, worldwide reach</p>
-        </div>
+        <img class="fade-up" src="images/Comprehensive Device Management from Edge to Cloud/2.png"
+          alt="Industry applications across wafer fabs, healthcare, electronics manufacturing, solar and energy, logistics, telecom, facility monitoring, and global outlook">
       </div>
     </div>
   </section>
@@ -2942,6 +3117,7 @@
             ASEAN and India.</p>
           <p class="team-credentials">Electronics &amp; Communication Engineer | Expertise in SCADA, Industrial
             Automation, IoT &amp; Partner Ecosystem Development</p>
+          <a class="team-linkedin" href="https://www.linkedin.com/in/satish-allampalli-63262932?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="View Satish Allampalli on LinkedIn">in</a>
         </div>
         <div class="team-card fade-up">
           <div class="team-avatar"><img src="images/shashi.png" alt="Shashishekara Anantharamaiah"></div>
@@ -2958,9 +3134,10 @@
           <p class="team-credentials">Fellow, Institution of Engineers Australia (FIEAust) | Chartered Professional
             Engineer (CPEng &amp; RPEQ) | PRINCE 2 Practitioner | Lean Six Sigma Black Belt | B.E. (Electronics &amp;
             Communication), NIT Karnataka</p>
+          <a class="team-linkedin" href="https://www.linkedin.com/in/shashishekara-anantharamaiah-28291525?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="View Shashishekara Anantharamaiah on LinkedIn">in</a>
         </div>
         <div class="team-card fade-up">
-          <div class="team-avatar"><img src="images/Girish.jpeg" alt="Dr. Girish Revadigar"></div>
+          <div class="team-avatar"><img src="images/Dr.Girish Revadigar.jpeg" alt="Dr. Girish Revadigar"></div>
           <h4>Dr. Girish Revadigar </h4>
           <p class="team-role">Strategic Advisor</p>
           <p>Dr. Girish is an Assistant Professor in the Department of Data Science and Artificial Intelligence at
@@ -2976,6 +3153,16 @@
           <p class="team-credentials">PhD in Computer Science and Engineering with a specialization in Cybersecurity
             from University of New South Wales. | B.E. in Electronics and Communication Engineering and an M.Tech from
             Visvesvaraya Technological University.</p>
+          <a class="team-linkedin" href="https://www.linkedin.com/in/girish-revadigar-phd-55a33b28?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="View Dr. Girish Revadigar on LinkedIn">in</a>
+        </div>
+
+        <div class="team-card fade-up">
+          <div class="team-avatar"><img src="images/Mallya.png" alt="Dr. M V Mallya"></div>
+          <h4>Dr. Moodbidri Varadaraja Mallya </h4>
+          <p class="team-role">Board of Director for India Branch</p>
+          <p>Moodbidri Varadaraja Mallya - M V Mallya is a seasoned banker with more than 39+ years exposure in banking and finance related multifarious domains such as credit policy/ appraisal/ rating/ sanctions/review and monitoring, MIS, audit/inspection, general administration(staff/assets management), merchant banking, institutional risk management etc. He has both operational and administrative experience in senior positions, in a premier public sector bank in India. He had exposure to International banking business in HongKong for more than 3 years. He has provided risk management consultancy services and drafted functional/operating policies to financial institutions.</p>
+          <p class="team-credentials">Certified Associate of Indian Institute of Bankers, Post graduate in Mathematics (M.Sc), Master of Business Administration (MBA-Finance), Law graduate (L.L.B).</p>
+          <a class="team-linkedin" href="https://www.linkedin.com/company/nexalytics-dtx-pte-ltd/" target="_blank" rel="noopener noreferrer" aria-label="View Nexalytics DTX on LinkedIn">in</a>
         </div>
       </div>
     </div>
@@ -3060,11 +3247,13 @@
         </div>
         <div class="footer-links">
           <a href="#about">About</a>
+          <a href="#news">News</a>
+          <a href="#why">Why Us</a>
           <a href="#solutions">Solutions</a>
-          <a href="#tech-hub">Technology Hub</a>
+          <a href="#products">Products</a>
+          <a href="#tech-hub">Tech Hub</a>
           <a href="#industries">Industries</a>
-          <a href="#team">Team</a>
-          <!-- <a href="#partners">Partners</a> -->
+          <a href="#team">Management</a>
           <a href="https://www.nexalyticsdtx.com" target="_blank">Website</a>
         </div>
       </div>
@@ -3103,7 +3292,35 @@
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
+      updateActiveNavLink();
     });
+
+    // Update active navigation link based on scroll position
+    function updateActiveNavLink() {
+      const sections = ['about', 'news', 'why', 'solutions', 'products', 'tech-hub', 'industries', 'team', 'contact'];
+      let currentSection = 'about';
+      
+      for (const sectionId of sections) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= 150) {
+            currentSection = sectionId;
+          }
+        }
+      }
+      
+      // Update nav links
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    // Initial call on page load
+    updateActiveNavLink();
 
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
@@ -3160,5 +3377,4 @@
     });
   </script>
 </body>
-
 </html>
